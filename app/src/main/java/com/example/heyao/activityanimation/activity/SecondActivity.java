@@ -24,11 +24,6 @@ import com.example.heyao.activityanimation.utils.ImageViewUtil;
 
 import java.util.Locale;
 
-import static com.example.heyao.activityanimation.constant.Constant.PROPNAME_HEIGHT;
-import static com.example.heyao.activityanimation.constant.Constant.PROPNAME_SCREENLOCATION_LEFT;
-import static com.example.heyao.activityanimation.constant.Constant.PROPNAME_SCREENLOCATION_TOP;
-import static com.example.heyao.activityanimation.constant.Constant.PROPNAME_WIDTH;
-
 public class SecondActivity extends AppCompatActivity implements ViewTreeObserver.OnPreDrawListener {
 
     private static final String TAG = "SecondActivity";
@@ -101,8 +96,8 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
         captureScaleValues2(mEndValues, mDestinationView);
 
         // calculate the scale factors
-        float scaleX = scaleDelta(mStartValues, mEndValues, PROPNAME_WIDTH);
-        float scaleY = scaleDelta(mStartValues, mEndValues, PROPNAME_HEIGHT);
+        float scaleX = scaleDelta(mStartValues, mEndValues, Constant.PROPNAME_WIDTH);
+        float scaleY = scaleDelta(mStartValues, mEndValues, Constant.PROPNAME_HEIGHT);
 
         // scale the image
         mDestinationView.setScaleX(scaleX);
@@ -112,8 +107,8 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
         // the values to proper figure out the translation deltas w.r.t. to start view
         captureScreenLocationValues(mEndValues, mDestinationView);
 
-        int deltaX = translationDelta(mStartValues, mEndValues, PROPNAME_SCREENLOCATION_LEFT);
-        int deltaY = translationDelta(mStartValues, mEndValues, PROPNAME_SCREENLOCATION_TOP);
+        int deltaX = translationDelta(mStartValues, mEndValues, Constant.PROPNAME_SCREENLOCATION_LEFT);
+        int deltaY = translationDelta(mStartValues, mEndValues, Constant.PROPNAME_SCREENLOCATION_TOP);
         // finally, translate the end view to where the start view was
         mDestinationView.setTranslationX(deltaX);
         mDestinationView.setTranslationY(deltaY);
@@ -142,13 +137,13 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
     private static void captureScreenLocationValues(@NonNull Bundle b, @NonNull View view) {
         if (view instanceof ImageView) {
             int[] size = ImageViewUtil.getDisplayedImageLocation((ImageView) view);
-            b.putInt(PROPNAME_SCREENLOCATION_LEFT, size[0]);
-            b.putInt(PROPNAME_SCREENLOCATION_TOP, size[1]);
+            b.putInt(Constant.PROPNAME_SCREENLOCATION_LEFT, size[0]);
+            b.putInt(Constant.PROPNAME_SCREENLOCATION_TOP, size[1]);
         } else {
             int[] screenLocation = new int[2];
             view.getLocationOnScreen(screenLocation);
-            b.putInt(PROPNAME_SCREENLOCATION_LEFT, screenLocation[0]);
-            b.putInt(PROPNAME_SCREENLOCATION_TOP, screenLocation[1]);
+            b.putInt(Constant.PROPNAME_SCREENLOCATION_LEFT, screenLocation[0]);
+            b.putInt(Constant.PROPNAME_SCREENLOCATION_TOP, screenLocation[1]);
         }
     }
 
@@ -195,10 +190,10 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
      */
     private void runExitAnimation() {
         // re-calculate deltas
-        int deltaX = translationDelta(mStartValues, mEndValues, PROPNAME_SCREENLOCATION_LEFT);
-        int deltaY = translationDelta(mStartValues, mEndValues, PROPNAME_SCREENLOCATION_TOP);
-        float scaleX = scaleDelta(mStartValues, mEndValues, PROPNAME_WIDTH);
-        float scaleY = scaleDelta(mStartValues, mEndValues, PROPNAME_HEIGHT);
+        int deltaX = translationDelta(mStartValues, mEndValues, Constant.PROPNAME_SCREENLOCATION_LEFT);
+        int deltaY = translationDelta(mStartValues, mEndValues, Constant.PROPNAME_SCREENLOCATION_TOP);
+        float scaleX = scaleDelta(mStartValues, mEndValues, Constant.PROPNAME_WIDTH);
+        float scaleY = scaleDelta(mStartValues, mEndValues, Constant.PROPNAME_HEIGHT);
 
         mDestinationView.animate()
                 .setDuration(DEFAULT_DURATION)
