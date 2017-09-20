@@ -1,4 +1,6 @@
-package com.example.heyao.activityanimation.dagger2;
+package com.example.heyao.activityanimation.module;
+
+import com.example.heyao.activityanimation.dagger2.Cooker;
 
 import dagger.Module;
 import dagger.Provides;

@@ -19,9 +19,9 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.heyao.activityanimation.R;
+import com.example.heyao.activityanimation.component.DaggerSimpleComponent;
 import com.example.heyao.activityanimation.constant.Constant;
 import com.example.heyao.activityanimation.dagger2.Cooker;
-import com.example.heyao.activityanimation.dagger2.DaggerSimpleComponent;
 import com.example.heyao.activityanimation.utils.ImageViewUtil;
 
 import javax.inject.Inject;

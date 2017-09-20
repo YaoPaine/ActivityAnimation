@@ -1,6 +1,7 @@
-package com.example.heyao.activityanimation.dagger2;
+package com.example.heyao.activityanimation.component;
 
 import com.example.heyao.activityanimation.activity.SecondActivity;
+import com.example.heyao.activityanimation.module.SimpleModule;
 
 import dagger.Component;
 

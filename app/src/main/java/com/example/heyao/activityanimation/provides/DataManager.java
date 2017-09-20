@@ -1,8 +1,9 @@
-package com.example.heyao.activityanimation.dagger2;
+package com.example.heyao.activityanimation.provides;
 
 import android.content.Context;
 
 import com.example.heyao.activityanimation.annotation.ApplicationContext;
+import com.example.heyao.activityanimation.dagger2.User;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -18,9 +19,7 @@ public class DataManager {
     private SharedPrefsHelper mSharedPrefsHelper;
 
     @Inject
-    public DataManager(@ApplicationContext Context context,
-                       DbHelper dbHelper,
-                       SharedPrefsHelper sharedPrefsHelper) {
+    public DataManager(@ApplicationContext Context context, DbHelper dbHelper, SharedPrefsHelper sharedPrefsHelper) {
         this.mContext = context;
         this.mDbHelper = dbHelper;
         this.mSharedPrefsHelper = sharedPrefsHelper;

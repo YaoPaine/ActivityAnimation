@@ -1,4 +1,4 @@
-package com.example.heyao.activityanimation.dagger2;
+package com.example.heyao.activityanimation.provides;
 
 import android.content.SharedPreferences;
 
@@ -11,6 +11,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public class SharedPrefsHelper {
+
     public static String PREF_KEY_ACCESS_TOKEN = "access-token";
 
     private SharedPreferences mSharedPreferences;
