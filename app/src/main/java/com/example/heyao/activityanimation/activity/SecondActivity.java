@@ -20,9 +20,11 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.heyao.activityanimation.R;
 import com.example.heyao.activityanimation.constant.Constant;
+import com.example.heyao.activityanimation.dagger2.Cooker;
+import com.example.heyao.activityanimation.dagger2.DaggerSimpleComponent;
 import com.example.heyao.activityanimation.utils.ImageViewUtil;
 
-import java.util.Locale;
+import javax.inject.Inject;
 
 public class SecondActivity extends AppCompatActivity implements ViewTreeObserver.OnPreDrawListener {
 
@@ -36,6 +38,11 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
     private Bundle mStartValues;
     // Bundle that will contain the transition end values
     final private Bundle mEndValues = new Bundle();
+
+    //    @Inject
+//    CoffeeMachine coffeeMachine;
+    @Inject
+    Cooker cooker;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +72,10 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
                 return false;
             }
         }).into(mDestinationView);
+
+        DaggerSimpleComponent.create().injectActivity(this);
+
+        Log.e(TAG, "onCreate: " + cooker.make());
     }
 
     @Override
@@ -159,7 +170,7 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
         int startValue = startValues.getInt(propertyName);
         int endValue = endValues.getInt(propertyName);
         float delta = (float) startValue / endValue;
-        Log.e(TAG, String.format(Locale.US, "%s: startValue = %d, endValue = %d, delta = %f", propertyName, startValue, endValue, delta));
+//        Log.e(TAG, String.format(Locale.US, "%s: startValue = %d, endValue = %d, delta = %f", propertyName, startValue, endValue, delta));
         return delta;
     }
 
@@ -175,7 +186,7 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
         int startValue = startValues.getInt(propertyName);
         int endValue = endValues.getInt(propertyName);
         int delta = startValue - endValue;
-        Log.e(TAG, String.format(Locale.US, "%s: startValue = %d, endValue = %d, delta = %d", propertyName, startValue, endValue, delta));
+//        Log.e(TAG, String.format(Locale.US, "%s: startValue = %d, endValue = %d, delta = %d", propertyName, startValue, endValue, delta));
         return delta;
     }
 
@@ -202,12 +213,50 @@ public class SecondActivity extends AppCompatActivity implements ViewTreeObserve
                 .scaleY(scaleY)
                 .translationX(deltaX)
                 .translationY(deltaY)
-                .withEndAction(new Runnable() {
-                    @Override
-                    public void run() {
-                        finish();
-                        overridePendingTransition(0, 0);
-                    }
+                .withEndAction(() -> {
+                    finish();
+                    overridePendingTransition(0, 0);
                 }).start();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onRestart: ");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart: ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+    }
+
+    @Override
+    protected void onPause() {
+        overridePendingTransition(0, 0);
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
+    }
+
+    public void onClick(View view) {
+
     }
 }

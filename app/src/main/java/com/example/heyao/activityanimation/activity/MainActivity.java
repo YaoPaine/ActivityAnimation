@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -15,10 +16,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private String imageUrl = "https://img.vipsouq.net/yks-resource/screen/2017-07-14/20170714122131431_q2Qb_mid.jpg";
 
+    private String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.e(TAG, "onCreate: ");
 
         findViewById(R.id.tv_jump).setOnClickListener(this);
         ImageView iv = (ImageView) findViewById(R.id.iv);
@@ -55,9 +60,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     /**
      * Helper method to capture the view values to animate
-     *
-     * @param view target view
-     * @return Bundle with the captured values
      */
 //    private static Bundle captureValues(@NonNull View view) {
 //        Bundle b = new Bundle();
@@ -85,4 +87,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        context.startActivity(intent);
 //        ((Activity) context).overridePendingTransition(0, 0);
 //    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onRestart: ");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart: ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
+    }
 }
